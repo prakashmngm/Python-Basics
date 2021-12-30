@@ -74,7 +74,91 @@ class SLL:
             nodeobj = Node(tempPtr.data)
             self.append(nodeobj)
             tempPtr = tempPtr.nextPtr
-                
+    # write a function to update a new data element in a given index position
+    
+    def update(self,index,newValue):
+        tempPtr = self.head
+        start = 0
+        while(start < index):
+            tempPtr = tempPtr.nextPtr
+            start = start+1
+        tempPtr.data = newValue
+    
+    # write a function to insert a new node at the start of the SLL
+    
+    def insertAtStart(self,nodeobj):
+        if(self.head == None):
+            self.head = nodeobj
+        else:
+            nodeobj.nextPtr = self.head
+            self.head = nodeobj
+    
+    # write a function to insert a new node at the end of the SLL
+    
+    def insertAtEnd(self,nodeobj):
+        if(self.head == None):
+            self.head = nodeobj
+        else:
+            tempPtr = self.head
+            while(tempPtr.nextPtr != None):
+                tempPtr = tempPtr.nextPtr
+            tempPtr.nextPtr = nodeobj
+    
+    # write a function to insert a new node at the given index position
+    
+    def insert(self,index,nodeobj):
+        if(self.head == None):
+            self.head = nodeobj
+        else:
+            tempPtr = self.head
+            start = 0
+            while(start < index-1):
+                tempPtr = tempPtr.nextPtr
+                start = start+1
+            nodeobj.nextPtr = tempPtr.nextPtr
+            tempPtr.nextPtr = nodeobj
+            
+    # write a function to delete first node of the SLL
+    
+    def deleteFirstNode(self):
+        if(self.head == None):
+            return 'empty Linked List'
+        else:
+            tempPtr = self.head
+            self.head = tempPtr.nextPtr
+    
+    # write a function to delete last node of the SLL
+    
+    def deleteLastNode(self):
+        if(self.head == None):
+            return 'empty Linked List'
+        else:
+            tempPtr = self.head
+            start = 0
+            while(start < self.length()-2):
+                tempPtr = tempPtr.nextPtr
+                start = start+1
+            tempPtr.nextPtr = None
+            
+    # write a function to delete a node at the given index position
+    
+    def delete(self,index):
+        if(self.head == None):
+            return 'empty linked List'
+        elif(index >= self.length()):
+            return 'invalid index'
+        else:
+            tempPtr1 = self.head
+            tempPtr2 = self.head
+            start = 0
+            while(start < index-1):
+                tempPtr1 = tempPtr1.nextPtr
+                start = start+1
+            start = 0
+            while(start < index):
+                tempPtr2 = tempPtr2.nextPtr
+                start = start+1
+            tempPtr1.nextPtr = tempPtr2.nextPtr
             
 # --------------------------------------------
 
@@ -99,4 +183,23 @@ print(mySLL.printIndices('15'))
 newSLL = SLL()
 newSLL.copy(mySLL)
 newSLL.printSLL()
+mySLL.update(2,'200')
+mySLL.printSLL()
+N7 = Node('100')
+mySLL.insertAtStart(N7)
+mySLL.printSLL()
+N8 = Node('500')
+mySLL.insertAtEnd(N8)
+mySLL.printSLL()
+N9 = Node('1000')
+mySLL.insert(5,N9)
+mySLL.printSLL()
+mySLL.deleteFirstNode()
+mySLL.printSLL()
+mySLL.deleteLastNode()
+mySLL.printSLL()
+mySLL.delete(6))
+mySLL.printSLL()
+
+
 
