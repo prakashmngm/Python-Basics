@@ -27,11 +27,14 @@ class SLL:
             tempPtr.nextPtr = nodeobj
             
     def printSLL(self):
-        tempPtr = self.head
-        while(tempPtr != None):
-            print(tempPtr.data+'->',end='')
-            tempPtr = tempPtr.nextPtr
-        print()
+        if(self.head == None):
+            print("Empty Linked List")
+        else:
+            tempPtr = self.head
+            while(tempPtr != None):
+                print(tempPtr.data+'->',end='')
+                tempPtr = tempPtr.nextPtr
+            print()
         
     def length(self):
         tempPtr = self.head
@@ -104,34 +107,23 @@ class SLL:
                 tempPtr = tempPtr.nextPtr
             tempPtr.nextPtr = nodeobj
     
-    # write a function to insert a new node at the given index position
-    
-    def insert(self,index,nodeobj):
-        if(self.head == None):
-            self.head = nodeobj
-        else:
-            tempPtr = self.head
-            start = 0
-            while(start < index-1):
-                tempPtr = tempPtr.nextPtr
-                start = start+1
-            nodeobj.nextPtr = tempPtr.nextPtr
-            tempPtr.nextPtr = nodeobj
-            
     # write a function to delete first node of the SLL
     
     def deleteFirstNode(self):
         if(self.head == None):
-            return 'empty Linked List'
+            print('empty Linked List')
         else:
             tempPtr = self.head
             self.head = tempPtr.nextPtr
+
     
     # write a function to delete last node of the SLL
     
     def deleteLastNode(self):
         if(self.head == None):
-            return 'empty Linked List'
+            print('empty Linked List')
+        elif(self.length() == 1):
+            self.head = None
         else:
             tempPtr = self.head
             start = 0
@@ -142,11 +134,15 @@ class SLL:
             
     # write a function to delete a node at the given index position
     
+    
     def delete(self,index):
         if(self.head == None):
-            return 'empty linked List'
+            print('empty linked List')
         elif(index >= self.length()):
-            return 'invalid index'
+            print('invalid index')
+        elif(index == 0):
+            tempPtr = self.head
+            self.head = tempPtr.nextPtr
         else:
             tempPtr1 = self.head
             tempPtr2 = self.head
@@ -159,8 +155,43 @@ class SLL:
                 tempPtr2 = tempPtr2.nextPtr
                 start = start+1
             tempPtr1.nextPtr = tempPtr2.nextPtr
+    
+    # write a function to insert a new node at the given index position
+    
+    def insert(self,index,nodeobj):
+        if(self.head == None):
+            self.head = nodeobj
+        elif(index > self.length()):
+            print('Invalid Index')
+        elif(index == self.length()):
+            self.append(nodeobj)
+        elif(index == 0):
+            nodeobj.nextPtr = self.head
+            self.head = nodeobj
+        else:
+            tempPtr = self.head
+            start = 0
+            while(start < index-1):
+                tempPtr = tempPtr.nextPtr
+                start = start+1
+            nodeobj.nextPtr = tempPtr.nextPtr
+            tempPtr.nextPtr = nodeobj
+            
             
 # --------------------------------------------
+
+N1 = Node('11')
+N2 = Node('12')
+N3 = Node('13')
+N4 = Node('100')
+mySLL = SLL()
+mySLL.append(N1)
+mySLL.append(N2)
+mySLL.append(N3)
+mySLL.printSLL()
+mySLL.insert(4,N4)
+mySLL.printSLL()
+
 
 N1 = Node('11')
 N2 = Node('12')
