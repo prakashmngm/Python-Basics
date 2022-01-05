@@ -54,7 +54,24 @@ class SLL:
 	            else:
 	                tempPtr1 = tempPtr1.nextPtr
 	                tempPtr2 = tempPtr2.nextPtr
-	               
+	# write a function to remove all the instances of a given element
+	def removeAll(self,data):
+	    while(self.head != None):
+	        if(self.head.data == data):
+	            while(self.head != None and self.head.data == data):
+	                self.head = self.head.nextPtr
+	        else:
+	            ptr1 = self.head
+	            ptr2 = self.head.nextPtr
+	            while(ptr2 != None):
+	                if(data == ptr2.data):
+	                    ptr1.nextPtr = ptr2.nextPtr
+	                    ptr2 = ptr2.nextPtr
+	                else:
+	                    ptr1 = ptr2
+	                    ptr2 = ptr2.nextPtr
+	            if(ptr2 == None):
+	                break               
 	def reverse1(self):
 	    if(self.head == None):
 	    	print('Empty Linked List')
@@ -67,7 +84,6 @@ class SLL:
     		    ptr2 = ptr2.nextPtr
     		    self.head.nextPtr = ptr1
     		    ptr1 = self.head
-    
         
 	                
 #-----------------------------------------------------------------------------------
@@ -82,4 +98,6 @@ print()
 mySLL.reverse1()
 print()
 mySLL.printSLL()
-
+mySLL.removeAll(11)
+print()
+mySLL.printSLL()
