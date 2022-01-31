@@ -1,4 +1,11 @@
 '''
+
+                            Online Python Compiler.
+                Code, Compile, Run and Debug python program online.
+Write your code in this editor and press "Run" button to execute it.
+
+'''
+'''
 convertListToSLL(self, list)
 
 
@@ -104,6 +111,10 @@ class SLL:
 	                P1 = P1.nextPtr
 	            if(P2 != None):
 	                tmpP1.nextPtr = P2
+	    if(self.head.data < sll2.head.data):
+	        return self.head
+	    else:
+	        return sll2.head
 	def reverse1(self):
 	    if(self.head == None):
 	    	print('Empty Linked List')
@@ -119,11 +130,12 @@ class SLL:
 
 #-----------------------------------------------------------------------------------
 mySLL1 = SLL()
-mySLL1.create_SLL_From_List([1,2,3,8,10])
+mySLL1.create_SLL_From_List([-6,-2,1,2,3,6,10,15])
 mySLL2 = SLL()
-mySLL2.create_SLL_From_List([9,10,11,12])
+mySLL2.create_SLL_From_List([-5,-1,7,8,9,10,11,16])
 
-mySLL1.merge(mySLL2)
-print()
-mySLL1.printSLL()
-
+sll = mySLL1.merge(mySLL2)
+if(sll.data == mySLL1.head.data):
+    mySLL1.printSLL()
+else:
+    mySLL2.printSLL()
