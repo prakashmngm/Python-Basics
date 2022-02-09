@@ -1,4 +1,37 @@
 '''
+Given a SLL : 11-> 12 -> 13 -> 14 -> 15
+                        0      1        2      3        4
+
+Club even positioned nodes first, and then club odd positioned nodes.
+Modify the input list itself.
+def clubEvenOdd( self )
+     …..
+     …..
+     Return head
+
+Output : 11 -> 13  -> 15 ->  12 -> 14
+
+
+                P1                    P3
+          ↓             ↓      
+Head -> 11 -> 12  -> 13 -> 14 -> 15
+                         ↑
+                       P2             
+
+
+
+Ptr1 = self.head
+SecondNode = Ptr1.next
+ while(ptr1 != None and ptr1.nextPtr != None):
+Ptr2 = ptr1.nextPtr
+Ptr3 = ptr1.nextPtr.nextPtr
+ptr1.nextPtr = ptr3
+Ptr4 = ptr2.nextPtr.nextPtr
+
+if(P3 != None)
+Ptr2.nextPtr = ptr4 (P3.next)
+Ptr1 = Ptr3
+Ptr2 = Ptr4 (P3.next)
 
 
 '''
