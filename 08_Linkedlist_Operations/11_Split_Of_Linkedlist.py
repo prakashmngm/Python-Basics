@@ -54,6 +54,8 @@ def split(num,parts):
                 break
         return lst
 
+split(10,3)
+
 class Node:
 	def __init__(self,data):
 		self.data = data
@@ -69,6 +71,7 @@ class SLL:
 		while(tempPtr != None):
 			print(str(tempPtr.data)+'->',end = '')
 			tempPtr = tempPtr.nextPtr
+		print()
 	
 	def append(self,nodeobj):
 		if(self.head == None):
@@ -109,29 +112,32 @@ class SLL:
 	        tempPtr = tempPtr.nextPtr
 	    return count
 
-	def splitLL(self,k):
+	def splitLL(self,k,SLL_HeadPtrs):
 	    length_of_splitLLs = split(self.length(),k)
 	    print(length_of_splitLLs)
 	    tempPtr = self.head
-	    array_of_heads = []
-	    array_of_heads.append(self.head)
-	    label = 0
+	    iter_no = 0
 	    for index in length_of_splitLLs:
+	        SLL_HeadPtrs[iter_no].head = tempPtr
 	        start = 0
 	        while(start < index):
+	            endPtr = tempPtr
 	            tempPtr = tempPtr.nextPtr
 	            start = start+1
-	        label = label+1
-	        Head = 'head'+str(label)
-	        Head = tempPtr
-	        array_of_heads.append(Head)
-	    return array_of_heads
-                
+	        endPtr.nextPtr = None
+	        iter_no = iter_no+1
 #--------------------------------------------------------------------
 mySLL = SLL()
 mySLL.create_SLL_From_List([11,12,13,14,15,16])
-array_of_heads = mySLL.splitLL(4)
-print(array_of_heads)
-for head in array_of_heads:
-    head.printSLL()
+SLL_HeadPtrs = []
+parts = 4
+
+for index in range(parts):
+    newSLL = SLL()
+    SLL_HeadPtrs.append(newSLL)
+    
+mySLL.splitLL(parts,SLL_HeadPtrs)
+
+for index in range(parts):
+    SLL_HeadPtrs[index].printSLL()
 
